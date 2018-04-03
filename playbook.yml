@@ -1,14 +1,19 @@
 ---
 - hosts: all
 
+  vars:
+    packages:
+      - httpd
+      - openssh-server
+
   tasks:
     - name: ensure apache is at the latest version
       yum:
-        name: httpd
+        name: "{{ packages }}"
         state: latest
     - name: write the apache config file
       template:
-        src: /apache/welcome.conf.j2
+        src: apache/welcome.conf.j2
         dest: /etc/httpd/conf.d/welcome.conf
       notify:
         - restart apache
