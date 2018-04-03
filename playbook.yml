@@ -8,7 +8,7 @@
         state: latest
     - name: write the apache config file
       template:
-        src: /apache/httpd.j2
+        src: /apache/welcome.conf.j2
         dest: /etc/httpd/conf.d/welcome.conf
       notify:
         - restart apache
